@@ -50,7 +50,7 @@
             var isValid = dados.checkValidity();
 
             if (isValid == true) {
-                window.location.href = 'widget.html';
+                window.location.href = 'https://desk.zoho.com/installExtension?extensionId=5eec1403-9e23-40d5-ae20-103965362ad4&version=58.0&hash=9ba0e4a5b426e457f40c37a277e7a8fe1a5688f94a40f275bf9f5d511e75c727';
             }
         });
         //////////////
@@ -96,7 +96,7 @@
         ///////////
         window.onload() = function () {
             pegaCode();
-            apagaCode();
+            // apagaCode();
         };
 
         function pegaCode(){
@@ -105,14 +105,14 @@
             const code = split[1];
 
             setCookie('url-code', code, 7);
-        }
-
-        function apagaCode() {
-            var s = window.location.href;
-            s = s.substring(0, s.indexOf('&code='));
-            window.location.href = s;
         };
 
+        // function apagaCode() {
+        //     var s = window.location.href;
+        //     s = s.substring(0, s.indexOf('&code='));
+        //     window.location.href = s;
+        // };
+        ///////////
         //Ao enviar as informações, elas são guardadas em um json no localStorage
         const handleFormSubmit = event => {
             event.preventDefault();
