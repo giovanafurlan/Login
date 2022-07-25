@@ -10,32 +10,32 @@
 </head>
 
 <style>
-    .container{
+    .container {
         margin-top: 5vw;
     }
 </style>
 
 <body>
     <div class="container">
-        <form class="row g-3 needs-validation" novalidate>
+        <form id="form" class="row g-3 needs-validation" novalidate>
             <div class="col-md-4">
-              <label for="validationCustom01" class="form-label">Nome</label>
-              <input type="text" class="form-control" id="validationCustom01" required>
-              <div class="valid-feedback">
-                Looks good!
-              </div>
+                <label for="validationCustom01" class="form-label">Nome</label>
+                <input type="text" class="form-control" id="validationCustom01" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
             </div>
             <div class="col-md-4">
-              <label for="validationCustom02" class="form-label">Email</label>
-              <input type="emial" class="form-control" id="validationCustom02" required>
-              <div class="valid-feedback">
-                Looks good!
-              </div>
+                <label for="validationCustom02" class="form-label">Email</label>
+                <input type="emial" class="form-control" id="validationCustom02" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
             </div>
             <div class="col-12">
-              <button class="btn btn-primary" type="submit">Submit form</button>
+                <button class="btn btn-primary" type="submit">Submit form</button>
             </div>
-          </form>
+        </form>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -56,6 +56,29 @@
                     }, false)
                 })
         })();
+
+        const url = (window.location.href);
+        const split = url.split('code=');
+        const code = split[1];
+
+        //Ao enviar as informações, elas são guardadas em um json no localStorage
+        const handleFormSubmit = event => {
+            event.preventDefault();
+
+            const nome = document.getElementById("validationCustom01").value;
+            const email = document.getElementById("validationCustom02").value;
+
+            const objeto = new Object();
+            objeto.nome = nome;
+            objeto.email = email;
+            objeto.code = code;
+
+            localStorage.setItem('nuvemshop_zohoDesk', JSON.stringify(objeto));
+        };
+
+        //Chama a função ao enviar as informações
+        const form = document.getElementById('form');
+        form.addEventListener('submit', handleFormSubmit);
     </script>
 </body>
 
