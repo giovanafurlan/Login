@@ -62,8 +62,6 @@
         const split = url.split('code=');
         const code = split[1];
 
-        const PERMITTED_DOMAIN = "https://kb.webpeak.com.br/";
-
         //Ao enviar as informações, elas são guardadas em um json no localStorage
         const handleFormSubmit = event => {
             event.preventDefault();
@@ -76,9 +74,7 @@
             objeto.email = email;
             objeto.code = code;
 
-            if (event.origin === PERMITTED_DOMAIN) {
-                localStorage.setItem('nuvemshop_zohoDesk', JSON.stringify(objeto));
-            }
+            sessionStorage.setItem('nuvemshop_zohoDesk', JSON.stringify(objeto));
         };
 
         //Chama a função ao enviar as informações
