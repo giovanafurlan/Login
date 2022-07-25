@@ -76,46 +76,7 @@
             localStorage.setItem('getSessionStorage', 'foobar');
             localStorage.removeItem('getSessionStorage', 'foobar');
         };
-
-        (function () {
-            'use strict'
-            var forms = document.querySelectorAll('.needs-validation')
-            Array.prototype.slice.call(forms)
-                .forEach(function (form) {
-                    form.addEventListener('submit', function (event) {
-                        if (!form.checkValidity()) {
-                            event.preventDefault()
-                            event.stopPropagation()
-                        }
-                        form.classList.add('was-validated')
-                    }, false)
-                })
-        })();
-
-        const url = (window.location.href);
-        const split = url.split('code=');
-        const code = split[1];
-
-        //Ao enviar as informações, elas são guardadas em um json no localStorage
-        const handleFormSubmit = event => {
-            event.preventDefault();
-
-            const nome = document.getElementById("validationCustom01").value;
-            const email = document.getElementById("validationCustom02").value;
-
-            const objeto = new Object();
-            objeto.nome = nome;
-            objeto.email = email;
-            objeto.code = code;
-
-            sessionStorage.setItem('nuvemshop_zohoDesk', JSON.stringify(objeto));
-            localStorage.setItem('nuvemshop_zohoDesk', JSON.stringify(objeto));
-        };
-
-        //Chama a função ao enviar as informações
-        const form = document.getElementById('form');
-        form.addEventListener('submit', handleFormSubmit);
-
+        ////////////////////
         function setCookie(name, value, days) {
             var expires = "";
             if (days) {
@@ -140,8 +101,46 @@
         function eraseCookie(name) {
             document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
         }
+        //////////////
+        (function () {
+            'use strict'
+            var forms = document.querySelectorAll('.needs-validation')
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })();
+        /////////////
+        const url = (window.location.href);
+        const split = url.split('code=');
+        const code = split[1];
 
-        setCookie('ppkcookie', code, 7);
+        //Ao enviar as informações, elas são guardadas em um json no localStorage
+        const handleFormSubmit = event => {
+            event.preventDefault();
+
+            const nome = document.getElementById("validationCustom01").value;
+            const email = document.getElementById("validationCustom02").value;
+
+            const objeto = new Object();
+            objeto.nome = nome;
+            objeto.email = email;
+            objeto.code = code;
+
+            sessionStorage.setItem('nuvemshop_zohoDesk', JSON.stringify(objeto));
+            localStorage.setItem('nuvemshop_zohoDesk', JSON.stringify(objeto));
+            setCookie('nuvemshop-zohoDesk', code, 7);
+        };
+
+        //Chama a função ao enviar as informações
+        const form = document.getElementById('form');
+        form.addEventListener('submit', handleFormSubmit);
     </script>
 </body>
 
