@@ -57,19 +57,19 @@
                 })
         })();
 
-        window.onload = function () {
-            pegaCode();
-        };
-
         const url = (window.location.href);
         const split = url.split('code=');
-        const code = split1[1];
+        const code = split[1];
 
         function pegaCode() {
             const objeto = new Object();
             objeto.code = code;
 
             localStorage.setItem('teste', JSON.stringify(objeto));
+        };
+
+        window.onload = function () {
+            pegaCode();
         };
 
         const acesso = document.getElementById("btn-acesso");
