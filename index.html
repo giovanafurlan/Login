@@ -61,11 +61,11 @@
             pegaCode();
         };
 
-        function pegaCode() {
-            const url1 = (window.location.href);
-            const split1 = url1.split('code=');
-            const code1 = split1[1];
+        const url = (window.location.href);
+        const split = url.split('code=');
+        const code = split1[1];
 
+        function pegaCode() {
             const objeto = new Object();
             objeto.code = code1;
 
