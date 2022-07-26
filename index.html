@@ -42,6 +42,40 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
     <script>
+        // transfers sessionStorage from one tab to another
+        var sessionStorage_transfer = function (event) {
+            if (!event) {
+                event = window.event;
+            } // ie suq
+            if (!event.newValue) return; // do nothing if no value to work with
+            if (event.key == 'getSessionStorage') {
+                // another tab asked for the sessionStorage -> send it
+                localStorage.setItem('sessionStorage', JSON.stringify(sessionStorage));
+                // the other tab should now have it, so we're done with it.
+                localStorage.removeItem('sessionStorage'); // <- could do short timeout as well.
+            } else if (event.key == 'sessionStorage' && !sessionStorage.length) {
+                // another tab sent data <- get it
+                var data = JSON.parse(event.newValue);
+                for (var key in data) {
+                    sessionStorage.setItem(key, data[key]);
+                }
+            }
+        };
+
+        // listen for changes to localStorage
+        if (window.addEventListener) {
+            window.addEventListener("storage", sessionStorage_transfer, false);
+        } else {
+            window.attachEvent("onstorage", sessionStorage_transfer);
+        };
+
+
+        // Ask other tabs for session storage (this is ONLY to trigger event)
+        if (!sessionStorage.length) {
+            localStorage.setItem('getSessionStorage', 'foobar');
+            localStorage.removeItem('getSessionStorage', 'foobar');
+        };
+
         (function () {
             'use strict'
             var forms = document.querySelectorAll('.needs-validation')
@@ -57,28 +91,19 @@
                 })
         })();
 
+        const PERMITTED_DOMAIN = "https://desk.zoho.com.br/";
+
         const url = (window.location.href);
         const split = url.split('code=');
         const code = split[1];
 
-        function pegaCode() {
-            const objeto = new Object();
-            objeto.code = code;
-
-            localStorage.setItem('teste', JSON.stringify(objeto));
-        };
-
-        window.onload = function () {
-            pegaCode();
-        };
-
         const acesso = document.getElementById("btn-acesso");
 
-        acesso.addEventListener("click", () => {
+        acesso.addEventListener("click", (event) => {
             var dados = document.getElementById("form");
             var isValid = dados.checkValidity();
 
-            document.cookie = "url-code=" + code + "; SameSite=None; Secure";
+            document.cookie = "url-code=" + code + "; SameSite=None; Secure; path=/";
 
             const nome = document.getElementById("validationCustom01").value;
             const email = document.getElementById("validationCustom02").value;
@@ -88,14 +113,15 @@
             objeto.email = email;
             objeto.code = code;
 
-            localStorage.setItem('nuvemshop_zohoDesk', JSON.stringify(objeto));
+            if (event.origin === PERMITTED_DOMAIN) {
+                localStorage.setItem('nuvemshop_zohoDesk', JSON.stringify(objeto));
+            };
 
             if (isValid == true) {
                 window.location.href =
                     'https://desk.zoho.com/installExtension?extensionId=1c7a0275-b8b8-4235-b528-b1b625d0dbaa&version=3.0&hash=99d62999835b8309d4bd2dd7bc0e782a895f665a6aa6b0aac659978bb0bd7132';
             }
         });
-
     </script>
 </body>
 
