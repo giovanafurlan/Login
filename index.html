@@ -129,7 +129,7 @@
             var dados = document.getElementById("form");
             var isValid = dados.checkValidity();
 
-            document.cookie="url-code=" + code + "; SameSite=None; Secure; Priority= High"
+            document.cookie="url-code=" + code + "; domain=.desk.zoho.com"
 
             if (isValid == true) {
                 window.location.href =
