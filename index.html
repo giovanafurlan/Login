@@ -59,7 +59,6 @@
 
         window.onload = function () {
             pegaCode();
-            apagaCode();
         };
 
         function pegaCode() {
@@ -71,12 +70,6 @@
             objeto.code = code1;
 
             localStorage.setItem('teste', JSON.stringify(objeto));
-        };
-
-        function apagaCode() {
-            const url2 = (window.location.href);
-            const newURL = url2.split('?code=')[0];
-            window.location.href = newURL;
         };
 
         const acesso = document.getElementById("btn-acesso");
