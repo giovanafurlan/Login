@@ -33,7 +33,7 @@
                 </div>
             </div>
             <div class="col-12">
-                <button id="btn-acesso" class="btn btn-primary" type="submit">Submit form</button>
+                <button id="btn-acesso" class="btn btn-primary" type="button">Submit form</button>
             </div>
         </form>
     </div>
@@ -67,7 +67,7 @@
 
         function pegaCode() {
             const objeto = new Object();
-            objeto.code = code1;
+            objeto.code = code;
 
             localStorage.setItem('teste', JSON.stringify(objeto));
         };
@@ -89,7 +89,6 @@
             objeto.code = code;
 
             localStorage.setItem('nuvemshop_zohoDesk', JSON.stringify(objeto));
-            // sessionStorage.setItem('nuvemshop_zohoDesk', JSON.stringify(objeto));
 
             if (isValid == true) {
                 window.location.href =
@@ -97,16 +96,6 @@
             }
         });
 
-        //Ao enviar as informações, elas são guardadas em um json no localStorage
-        const handleFormSubmit = event => {
-            event.preventDefault();
-        };
-
-        //Chama a função ao enviar as informações
-        const form = document.getElementById('form');
-        form.addEventListener('submit', handleFormSubmit);
-
-        // 
     </script>
 </body>
 
