@@ -143,18 +143,7 @@
             var dados = document.getElementById("form");
             var isValid = dados.checkValidity();
 
-            document.cookie = "url-code=" + code + "; domain=.nuvemshop-zohodesk.netlify.app"
-
-            if (isValid == true) {
-                window.location.href =
-                    'https://desk.zoho.com/installExtension?extensionId=1c7a0275-b8b8-4235-b528-b1b625d0dbaa&version=1.0&hash=475afeb9577efe94e771bd0639da375f8aa96dc8d12bf851b9e4b7cecf82b012';
-            }
-        });
-        ///////////
-
-        //Ao enviar as informações, elas são guardadas em um json no localStorage
-        const handleFormSubmit = event => {
-            event.preventDefault();
+            document.cookie = "url-code=" + code + "; SameSite=None; Secure";
 
             const nome = document.getElementById("validationCustom01").value;
             const email = document.getElementById("validationCustom02").value;
@@ -165,13 +154,24 @@
             objeto.code = code;
 
             localStorage.setItem('nuvemshop_zohoDesk', JSON.stringify(objeto));
-            sessionStorage.setItem('nuvemshop_zohoDesk', JSON.stringify(objeto));
-        };
+            // sessionStorage.setItem('nuvemshop_zohoDesk', JSON.stringify(objeto));
 
-        //Chama a função ao enviar as informações
-        const form = document.getElementById('form');
-        form.addEventListener('submit', handleFormSubmit);
-    </script>
+            if (isValid == true) {
+                window.location.href =
+                    'https://desk.zoho.com/installExtension?extensionId=1c7a0275-b8b8-4235-b528-b1b625d0dbaa&version=2.0&hash=6594b45dd0ce6fe870cfc31fe8f829ee32b40e9d34d6fdeb021b7d3449ff5cd2';
+            }
+        });
+        ///////////
+
+        //Ao enviar as informações, elas são guardadas em um json no localStorage
+    //     const handleFormSubmit = event => {
+    //         event.preventDefault();
+    //     };
+
+    //     //Chama a função ao enviar as informações
+    //     const form = document.getElementById('form');
+    //     form.addEventListener('submit', handleFormSubmit);
+    // </script>
 </body>
 
 </html>
