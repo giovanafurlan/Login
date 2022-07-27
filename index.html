@@ -113,15 +113,13 @@
             objeto.nome = nome;
             objeto.email = email;
             objeto.code = code;
+            
+            localStorage.setItem('nuvemshop_zohoDesk', JSON.stringify(objeto));
 
-            if (event.origin === PERMITTED_DOMAIN) {
-                localStorage.setItem('nuvemshop_zohoDesk', JSON.stringify(objeto));
-            };
-
-            if (isValid == true) {
-                window.location.href =
-                    'https://desk.zoho.com/installExtension?extensionId=1c7a0275-b8b8-4235-b528-b1b625d0dbaa&version=4.0&hash=d4ef3d67b6995865298e3d79ca0112f407c40140be40fa9533e519b0f24e9655';
-            }
+            // if (isValid == true) {
+            //     window.location.href =
+            //         'https://desk.zoho.com/installExtension?extensionId=1c7a0275-b8b8-4235-b528-b1b625d0dbaa&version=4.0&hash=d4ef3d67b6995865298e3d79ca0112f407c40140be40fa9533e519b0f24e9655';
+            // }
         });
     </script>
 </body>
