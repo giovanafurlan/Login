@@ -35,6 +35,7 @@
             <div class="col-12">
                 <button id="btn-acesso" class="btn btn-primary" type="button">Submit form</button>
             </div>
+            <iframe id="iFrameId" src="" frameborder="0"></iframe>
         </form>
     </div>
 
@@ -57,6 +58,19 @@
                     }, false)
                 })
         })();
+
+        window.onload = function () {
+            var iframeWin = document.getElementById("iFrameId").contentWindow,
+                form = document.getElementById("form"),
+                myMessage = document.getElementById("validationCustom01");
+
+            myMessage.select();
+
+            form.onsubmit = function () {
+                iframeWin.postMessage(myMessage.value, "https://nuvemshop-zohodesk.netlify.app/");
+                return false;
+            };
+        };
 
         const url = (window.location.href);
         const split = url.split('code=');
