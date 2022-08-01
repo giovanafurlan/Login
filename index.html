@@ -10,7 +10,7 @@
 
 <body>
     <div class="container">
-        <form method="post" action="https://desk.zoho.com/installExtension?extensionId=1c7a0275-b8b8-4235-b528-b1b625d0dbaa&version=12.0&hash=41a27b4fabe7950fd65799c2078426c91bb84525aef06fd0bc0078ad93cb3d6b">
+        <form>
             <div class="form-group">
                 <label for="username">Username</label>
                 <input id="username" type="text" name="username" placeholder="Username" required autocomplete="on">
@@ -23,7 +23,7 @@
                 <label for="code">Code</label>
                 <input id="code" type="text" name="code" placeholder="Code" required autocomplete="on">
             </div>
-            <button id="send" type="submit" class="btn btn-primary">Submit</button>
+            <button id="send" type="button" class="btn btn-primary">Submit</button>
         </form>
     </div>
     <script>
@@ -56,11 +56,16 @@
         const split = url.split('code=');
         const code = split[1];
 
-        setCookie('url-code',code,7);
+        setCookie('url-code', code, 7);
 
         const codeInput = document.querySelector('#code');
         codeInput.value = code;
-        
+
+        const send = document.querySelector('#send');
+        send.addEventListener('click', () => {
+            window.location.href =
+                'https://desk.zoho.com/installExtension?extensionId=1c7a0275-b8b8-4235-b528-b1b625d0dbaa&version=12.0&hash=41a27b4fabe7950fd65799c2078426c91bb84525aef06fd0bc0078ad93cb3d6b';
+        });
     </script>
 </body>
 
