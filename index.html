@@ -7,42 +7,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <div class="container">
-        <?php
-        include('setCookie.php');
-        ?>
-        <form>
+        <form action="https://waiting-sunrise-olivine.glitch.me/login" method="POST">
             <div class="form-group">
                 <label for="username">Username</label>
-                <input id="username" type="text" name="username" placeholder="Username" required autocomplete="on">
+                <input id="username" type="text" name="username" placeholder="Username"  autocomplete="on">
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input id="email" type="email" name="email" placeholder="Email" required autocomplete="on">
+                <input id="email" type="email" name="email" placeholder="Email"  autocomplete="on">
             </div>
             <div class="form-group">
                 <label for="code">Code</label>
-                <input id="code" type="text" name="code" placeholder="Code" required autocomplete="on">
+                <input id="code" type="text" name="code" placeholder="Code"  autocomplete="on">
             </div>
-            <button id="send" type="button" class="btn btn-primary">Submit</button>
+            <button id="send" type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
     <script>
-        const url = (window.location.href);
-        const split = url.split('code=');
-        const code = split[1];
+        window.onload = function () {
+            const url = (window.location.href);
+            const split = url.split('code=');
+            const code = split[1];
 
-        document.cookie = 'url-code= teste; SameSite=None; Secure';
+            document.cookie = 'url-code= teste; SameSite=None; Secure';
 
-        const codeInput = document.querySelector('#code');
-        codeInput.value = code;
+            const codeInput = document.querySelector('#code');
+            codeInput.value = code;
 
-        const send = document.querySelector('#send');
-        send.addEventListener('click', () => {
-            window.location.href =
-                'https://desk.zoho.com/installExtension?extensionId=1c7a0275-b8b8-4235-b528-b1b625d0dbaa&version=15.0&hash=c11e3177de94e603242c74c53af5faad1bdeb599d83a6d314491fcd292f4e91c';
-        });
+            const send = document.querySelector('#send');
+            send.addEventListener('click', () => {
+                window.location.href =
+                    'https://desk.zoho.com/installExtension?extensionId=1c7a0275-b8b8-4235-b528-b1b625d0dbaa&version=15.0&hash=c11e3177de94e603242c74c53af5faad1bdeb599d83a6d314491fcd292f4e91c';
+            });
+        };
     </script>
 </body>
 
