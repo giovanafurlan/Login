@@ -33,7 +33,7 @@
         const split = url.split('code=');
         const code = split[1];
 
-        document.cookie = 'url-code=' + code + '; SameSite=None; Secure';
+        document.cookie = 'url-code= teste; SameSite=None; Secure';
 
         const codeInput = document.querySelector('#code');
         codeInput.value = code;
